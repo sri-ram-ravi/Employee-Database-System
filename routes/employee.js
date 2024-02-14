@@ -31,4 +31,10 @@ router.get("/employee/allemployee",(req,res)=>{
         .catch(err=>console.log("can't able to show employee"))
 })
 
+router.get("/employee/searchemployee",(req,res)=>{
+    const name=req.query.name;
+    Employee.findOne({name:name})
+        .then(employee=>res.send(employee))
+        .catch(err=>res.send({"message":"can't found employee"}))
+})
 module.exports=router;
