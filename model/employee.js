@@ -6,4 +6,4 @@ let employeeSchema=new mongoose.Schema({
     salary:Number
 })
 
-module.exports=mongoose.model("Employee",employeeSchema)
+module.exports=mongoose.model("Employee",employeeSchema,"employeedetails")
