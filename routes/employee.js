@@ -48,4 +48,11 @@ router.put("/employee/updateemployee/:id",(req,res)=>{
     .then(employee=>res.send({"message":"empoloyee update successfully"}))
     .catch(err=>res.send({"message":"employee not get updated"}));
 })
+
+router.delete("/employee/deleteemployee/:id",(req,res)=>{
+    const employeeId=req.params.id;
+    Employee.deleteOne({_id:employeeId})
+    .then(employee=>res.send("employee deleted successfully"))
+    .catch(err=>res.send({"message":"can' able to delete employee"}))
+})
 module.exports=router;
