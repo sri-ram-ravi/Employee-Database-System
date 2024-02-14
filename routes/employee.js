@@ -34,7 +34,18 @@ router.get("/employee/allemployee",(req,res)=>{
 router.get("/employee/searchemployee",(req,res)=>{
     const name=req.query.name;
     Employee.findOne({name:name})
-        .then(employee=>res.send(employee))
+        .then(employee=>res.send({employee:employee}))
         .catch(err=>res.send({"message":"can't found employee"}))
+})
+
+router.put("/employee/updateemployee/:id",(req,res)=>{
+    const employeeId=req.params.id;
+    Employee.updateOne({_id:employeeId},{$set:{
+        name:req.body.name || "",
+        designation:req.body.designation || "",
+        salary:req.body.salary || ""
+    }})
+    .then(employee=>res.send({"message":"empoloyee update successfully"}))
+    .catch(err=>res.send({"message":"employee not get updated"}));
 })
 module.exports=router;
